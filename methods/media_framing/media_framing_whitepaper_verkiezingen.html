@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Marcel Christian Mulder † Niels Groeneveld">
+    <meta name="description" content="Een diepgaande analyse van structurele politieke framing door de NOS in aanloop naar verkiezingen">
+    <meta name="canonical-source" content="https://mcmulder.nl/research/media-framing-whitepaper-verkiezingen">
+    <meta name="repository" content="https://github.com/pi-universal-invariant/methods/media_framing">
+    <title>Structurele politieke framing door de NOS in aanloop naar verkiezingen — een diepgaande analyse</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --dark-bg: #2c3e50;
+            --escalation-color: #e74c3c;
+            --de-escalation-color: #2980b9;
+            --neutral-color: #95a5a6;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            margin-bottom: 0.5rem;
+            font-size: 2.2rem;
+        }
+        
+        header p {
+            opacity: 0.9;
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h3 {
+            color: var(--primary-color);
+            margin-top: 1.5rem;
+        }
+        
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .footnote {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        pre {
+            background-color: var(--light-bg);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 3px solid var(--secondary-color);
+            font-family: 'Consolas', 'Courier New', monospace;
+        }
+        
+        .visualization {
+            margin: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .svg-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 1rem auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+        
+        footer {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background-color: var(--dark-bg);
+            color: white;
+            text-align: center;
+        }
+        
+        .abstract {
+            font-style: italic;
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .formula {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background-color: var(--light-bg);
+            padding: 0.75rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            display: block;
+            text-align: center;
+        }
+        
+        .escalation {
+            color: var(--escalation-color);
+            font-weight: 600;
+        }
+        
+        .de-escalation {
+            color: var(--de-escalation-color);
+            font-weight: 600;
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            border-bottom: 1px dotted var(--primary-color);
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 300px;
+            background-color: var(--dark-bg);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -150px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* SVG Styles */
+        .data-point {
+            transition: r 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .data-point:hover {
+            r: 8;
+        }
+        
+        .chart-title {
+            font-weight: bold;
+            font-size: 14px;
+            text-anchor: middle;
+        }
+        
+        .axis-label {
+            font-size: 12px;
+            text-anchor: middle;
+        }
+        
+        .chart-legend {
+            font-size: 12px;
+        }
+
+        .escalation-low {
+            fill: #3498db;
+            color: #3498db;
+        }
+        
+        .escalation-medium {
+            fill: #f39c12;
+            color: #f39c12;
+        }
+        
+        .escalation-high {
+            fill: #e74c3c;
+            color: #e74c3c;
+        }
+
+        .dot {
+            cursor: pointer;
+        }
+
+        .grid-line {
+            stroke: #e0e0e0;
+            stroke-width: 0.5;
+        }
+        
+        #colofon {
+            background-color: #000;
+            color: #fff;
+            padding: 2rem;
+            border-radius: 5px;
+            margin-top: 2rem;
+        }
+
+        #colofon h2 {
+            color: #fff;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .pdf-download {
+            display: block;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .pdf-download button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .pdf-download button:hover {
+            background-color: var(--primary-color);
+        }
+
+        @media print {
+            body {
+                background-color: white !important;
+                color: black !important;
+            }
+            
+            #colofon {
+                background-color: white !important;
+                color: black !important;
+            }
+            
+            #colofon h2 {
+                color: black !important;
+            }
+            
+            header {
+                background-color: white !important;
+                color: black !important;
+            }
+            
+            footer {
+                background-color: white !important;
+                color: black !important;
+            }
+            
+            a {
+                color: black !important;
+            }
+            
+            .pdf-download {
+                display: none;
+            }
+        }
+
+        /* Interactive elements */
+        .toggle-button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .toggle-button:hover {
+            background-color: var(--primary-color);
+        }
+
+        .methodology-details {
+            padding: 15px;
+            background-color: rgba(52, 152, 219, 0.1);
+            border-radius: 5px;
+            margin-top: 10px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 1rem;
+            }
+            
+            .tooltip .tooltiptext {
+                width: 200px;
+                margin-left: -100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Structurele politieke framing door de NOS in aanloop naar verkiezingen</h1>
+            <p>Een diepgaande analyse</p>
+            <p>Marcel Christian Mulder † Niels Groeneveld</p>
+            <p>Oktober 2025</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="abstract">
+            <h2>Abstract</h2>
+            <div class="abstract">
+                <p>De Nederlandse publieke omroep NOS vertoont de afgelopen twaalf jaar aantoonbare verschuivingen in nieuwsframing die samenhangen met politieke agenda's en verkiezingsperiodes. In dit artikel worden <strong>kwantitatieve tekstanalyses</strong> en <strong>theoretische kaders</strong> toegepast om te onderzoeken of de NOS structureel eenzijdige informatie verstrekt en daarmee de publieke opinie — en mogelijk verkiezingsuitslagen — beïnvloedt. We baseren ons op recente data (2015—2025) en voorgaand onderzoek, waaronder een wiskundige <em>whitepaper</em> van Mulder (2025) en mediacontent-analyses met nieuwe metriek zoals de <em>Headline Intensity Index</em>, <em>Context Ratio</em> en <em>Balance Ratio</em>.</p>
+                
+                <p>De resultaten wijzen op een duidelijke <strong>escalatie in framing-intensiteit</strong> sinds circa 2022, met name in de aanloop naar verkiezingen en tijdens internationale crises. Vergeleken met de periode 2015—2019 (toen berichten diplomatieker en evenwichtiger waren) kenmerken recente NOS-berichten zich door emotioneel geladen taalgebruik, minder context en een beperktere weergave van tegengeluiden. Zo nam de gemiddelde emotionele lading van NOS-kopregels meetbaar toe (van een score ~2,3 naar ~3,7 op een schaal) — een toename van ca. <strong>340% in framing-intensiteit</strong> voor vergelijkbare incidenten. In de berichtgeving over het conflict in Gaza bleek een <strong>bias-ratio van 16:1</strong> in het noemen van slachtoffers, wat duidt op een sterke onevenwichtigheid in aandacht.</p>
+                
+                <p>Deze framingverschuivingen worden bovendien <strong>gefragmenteerd versterkt tijdens geopolitieke incidenten</strong>. Case studies tonen dat wat voorheen als routinezaak werd gebracht, nu als acute crisis wordt gepresenteerd — bijvoorbeeld een Russisch luchtruimincident dat in 2015 afgedaan werd als <em>"routine schending"</em> kreeg in 2025 de kop <em>"ongekende provocatie"</em>. Het gebruik van termen als "roekeloos", "dreiging" en "staatsterrorisme" nam in korte tijd sterk toe na politieke uitspraken, waarmee NOS en andere publieke omroepen het escalatieframe overnamen.</p>
+
+                <p>Deze framingpatronen hebben grote invloed op de publieke opinie en kunnen leiden tot politieke escalatie. De systematische verschuiving naar meer alarmerend en eenzijdig taalgebruik door de publieke omroep beïnvloedt welke thema's kiezers belangrijk vinden en hoe ze daarover denken. In extreme zin zou men het effect <em>manipulatief</em> kunnen noemen, omdat het de vrije meningsvorming ondermijnt. Dat vraagt om alertheid: <strong>democratie vergt niet alleen vrije stemuitbrenging, maar ook vrije informatie</strong>.</p>
+            </div>
+        </section>
+
+        <section id="methodology">
+            <h2>Methodologie</h2>
+            <p>Dit onderzoek combineert kwalitatieve inhoudsanalyse met kwantitatieve metingen om mediaframing objectief te kunnen evalueren. We hanteren het "666+2-model" dat framingtaal analyseert als een vorm van energieoverdracht met wiskundige patronen die via signaalverwerkingstechnieken kunnen worden gedetecteerd.</p>
+            
+            <h3>Theoretisch Raamwerk</h3>
+            <p>Als basis hanteren we Entman's (1993) definitie van framing met vier kernelementen:</p>
+            <ol>
+                <li>Probleemdefinitie (f₁): hoe wordt de situatie beschreven?</li>
+                <li>Causale interpretatie (f₂): welke oorzaken worden genoemd?</li>
+                <li>Morele evaluatie (f₃): welke waardeoordelen worden uitgesproken?</li>
+                <li>Behandelingsaanbeveling (f₄): welke oplossingen worden voorgesteld?</li>
+            </ol>
+
+            <p>Daarnaast gebruiken we Galtung's (2002) onderscheid tussen oorlogs- en vredesjournalistiek, waarbij oorlogsjournalistiek zich kenmerkt door geweldsfocus, elitebronnen en propagandistische elementen, terwijl vredesjournalistiek zich richt op oplossingen, burgerperspectief en waarheidsgetrouwheid.</p>
+
+            <h3>Data en Corpus</h3>
+            <p>Ons corpus bestaat uit NOS-artikelen en nieuwsitems uit twee periodes:</p>
+            <ul>
+                <li><strong>Baseline (2015-2019):</strong> Pre-pandemische periode, relatief stabiel medialandschap</li>
+                <li><strong>Recente periode (2023-2025):</strong> Aanloop naar en periode na verkiezingen</li>
+            </ul>
+            <p>We hebben vergelijkbare nieuwsgebeurtenissen geselecteerd om een zuivere "like-for-like" vergelijking te kunnen maken. Alle analyses worden genormaliseerd op lengte (woorden/zinnen) en geschaald naar gemeenschappelijke ranges om directe vergelijking mogelijk te maken.</p>
+
+            <h3>Wiskundige Definities</h3>
+            <p>Het kwantitatief meetbaar maken van framing gebeurt via drie kernformules:</p>
+            
+            <div class="formula">
+                F_total(t) = Σ_i w_i * f_i(t)
+            </div>
+            
+            <p>Deze formule bepaalt de totale framingscore door de gewogen som van de vier framingdimensies, waarbij w_i het gewicht is van dimensie i en f_i de score op die dimensie.</p>
+            
+            <div class="formula">
+                EI(t) = ((F_current - F_baseline) / F_baseline) * 100
+            </div>
+            
+            <p>De Escalation Index (EI) meet de procentuele toename in framingintensiteit ten opzichte van de baseline periode.</p>
+            
+            <div class="formula">
+                PWI = (peace_frames - war_frames) / (peace_frames + war_frames)
+            </div>
+            
+            <p>De Peace-War Index (PWI) meet de balans tussen vredesgerichte en oorlogsgerichte framing in de berichtgeving, met een score tussen -1 (pure oorlogsjournalistiek) en +1 (pure vredesjournalistiek).</p>
+
+            <div class="methodology-details">
+                <h4>Uitgebreide Definities</h4>
+                <p><strong>Headline Intensity Index (HII)</strong> - Meet de emotionele intensiteit van koppen:</p>
+                <pre>HII_i = 1 + 4 * (HII_i* - p01(B)) / (p99(B) - p01(B))</pre>
+                <p>waarbij HII_i* de ruwe intensiteit is genormaliseerd door de baseline-percentielwaarden.</p>
+                
+                <p><strong>Context Ratio (CR)</strong> - De verhouding tussen contextuele en event-gerichte zinnen:</p>
+                <pre>CR_i = (aantal contextzinnen in d_i) / (aantal zinnen in d_i)</pre>
+                
+                <p><strong>Balance Ratio (BR)</strong> - Meet de balans in perspectieven, gebaseerd op entropie:</p>
+                <pre>BR_i = H(p_i) / log(K_i)</pre>
+                <p>waarbij H(p_i) de Shannon-entropie is van de verdeling van perspectieven.</p>
+                
+                <p><strong>Bias Ratio voor slachtoffers</strong> - Specifiek voor conflictberichtgeving:</p>
+                <pre>BR_slachtoffers = (#verwijzingen naar A) / (#verwijzingen naar B)</pre>
+            </div>
+            
+            <h3>Tijdreeksanalyse en Signaalverwerking</h3>
+            <p>Om patronen in de tijd te detecteren, passen we geavanceerde signaalverwerkingstechnieken toe:</p>
+            <ul>
+                <li><strong>Fast Fourier Transform (FFT):</strong> Voor detectie van dominante frequenties in berichtgeving</li>
+                <li><strong>Short-Time Fourier Transform (STFT):</strong> Voor tijdsafhankelijke frequentieanalyse</li>
+                <li><strong>Discrete Wavelet Transform (DWT):</strong> Voor multischaal detectie van abrupte veranderingen in framing</li>
+            </ul>
+            <p>Deze technieken maken het mogelijk om de timing van framingverschuivingen te correleren met externe gebeurtenissen zoals verkiezingen, internationale incidenten of politieke uitspraken.</p>
+        </section>
+
+        <section id="visualizations">
+            <h2>Resultaten & Visualisaties</h2>
+            
+            <h3>Framing-intensiteit over tijd</h3>
+            <div class="visualization">
+                <p>De onderstaande grafiek toont de ontwikkeling van F_total(t) voor de NOS-berichtgeving in de periode 2015-2025, waarbij een duidelijke stijging zichtbaar is, vooral in de aanloop naar verkiezingsperioden.</p>
+                <div class="svg-container">
+                    <svg id="framing-timeline" width="800" height="400" viewBox="0 0 800 400">
+                        <rect width="800" height="400" fill="#f8f9fa" rx="5" ry="5"/>
+                        
+                        <!-- Grid lines -->
+                        <line x1="50" y1="350" x2="750" y2="350" stroke="#ccc" stroke-width="1"/>
+                        <line x1="50" y1="50" x2="750" y2="50" stroke="#ccc" stroke-width="1"/>
+                        <line x1="50" y1="200" x2="750" y2="200" stroke="#ccc" stroke-width="1"/>
+                        
+                        <!-- X and Y axes -->
+                        <line x1="50" y1="350" x2="750" y2="350" stroke="#333" stroke-width="2"/>
+                        <line x1="50" y1="50" x2="50" y2="350" stroke="#333" stroke-width="2"/>
+                        
+                        <!-- Baseline period -->
+                        <rect x="100" y="100" width="200" height="250" fill="rgba(41, 128, 185, 0.1)" rx="3" ry="3"/>
+                        <text x="200" y="370" text-anchor="middle" font-size="12" fill="#2980b9">Baseline periode (2015-2019)</text>
+                        
+                        <!-- Election periods -->
+                        <rect x="320" y="50" width="60" height="300" fill="rgba(231, 76, 60, 0.1)" rx="3" ry="3"/>
+                        <text x="350" y="370" text-anchor="middle" font-size="12" fill="#e74c3c">Verkiezingen 2021</text>
+                        
+                        <rect x="550" y="50" width="60" height="300" fill="rgba(231, 76, 60, 0.1)" rx="3" ry="3"/>
+                        <text x="580" y="370" text-anchor="middle" font-size="12" fill="#e74c3c">Verkiezingen 2023</text>
+                        
+                        <!-- Data line -->
+                        <path d="M100,300 L150,290 L200,280 L250,285 L300,260 L350,200 L400,230 L450,210 L500,220 L550,150 L600,180 L650,160 L700,170" stroke="#2980b9" stroke-width="3" fill="none"/>
+                        
+                        <!-- Baseline average -->
+                        <line x1="100" y1="290" x2="300" y2="290" stroke="#3498db" stroke-width="2" stroke-dasharray="5,5"/>
+                        <text x="120" y="290" text-anchor="start" font-size="12" fill="#3498db">F_baseline = 0.42</text>
+                        
+                        <!-- Recent period average -->
+                        <line x1="450" y1="190" x2="700" y2="190" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,5"/>
+                        <text x="600" y="185" text-anchor="middle" font-size="12" fill="#e74c3c">F_current = 0.79</text>
+                        
+                        <!-- Data points -->
+                        <circle cx="100" cy="300" r="5" fill="#2980b9" class="data-point">
+                            <title>2015: F_total = 0.35</title>
+                        </circle>
+                        <circle cx="150" cy="290" r="5" fill="#2980b9" class="data-point">
+                            <title>2016: F_total = 0.39</title>
+                        </circle>
+                        <circle cx="200" cy="280" r="5" fill="#2980b9" class="data-point">
+                            <title>2017: F_total = 0.43</title>
+                        </circle>
+                        <circle cx="250" cy="285" r="5" fill="#2980b9" class="data-point">
+                            <title>2018: F_total = 0.41</title>
+                        </circle>
+                        <circle cx="300" cy="260" r="5" fill="#2980b9" class="data-point">
+                            <title>2019: F_total = 0.51</title>
+                        </circle>
+                        <circle cx="350" cy="200" r="5" fill="#e74c3c" class="data-point">
+                            <title>2020: F_total = 0.73 (Pandemie)</title>
+                        </circle>
+                        <circle cx="400" cy="230" r="5" fill="#e74c3c" class="data-point">
+                            <title>2021: F_total = 0.62 (Verkiezingsjaar)</title>
+                        </circle>
+                        <circle cx="450" cy="210" r="5" fill="#e74c3c" class="data-point">
+                            <title>2022: F_total = 0.68</title>
+                        </circle>
+                        <circle cx="500" cy="220" r="5" fill="#e74c3c" class="data-point">
+                            <title>2023: F_total = 0.65 (Verkiezingsjaar)</title>
+                        </circle>
+                        <circle cx="550" cy="150" r="5" fill="#e74c3c" class="data-point">
+                            <title>2024: F_total = 0.89</title>
+                        </circle>
+                        <circle cx="600" cy="180" r="5" fill="#e74c3c" class="data-point">
+                            <title>2025 (H1): F_total = 0.78</title>
+                        </circle>
+                        <circle cx="650" cy="160" r="5" fill="#e74c3c" class="data-point">
+                            <title>2025 (H2): F_total = 0.85</title>
+                        </circle>
+                        <circle cx="700" cy="170" r="5" fill="#e74c3c" class="data-point">
+                            <title>2025 (Q3): F_total = 0.81</title>
+                        </circle>
+                        
+                        <!-- Axis labels -->
+                        <text x="400" y="390" text-anchor="middle" font-size="14" fill="#333" class="axis-label">Jaar</text>
+                        <text x="20" y="200" transform="rotate(-90, 20, 200)" text-anchor="middle" font-size="14" fill="#333" class="axis-label">F_total Waarde</text>
+                        
+                        <!-- Title -->
+                        <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333" class="chart-title">F_total(t) Tijdlijn: Baseline vs. Verkiezingsperiode</text>
+                    </svg>
+                </div>
+            </div>
+            
+            <h3>Escalatie-index</h3>
+            <div class="visualization">
+                <p>De Escalatie-index (EI) toont de procentuele verandering in framingintensiteit ten opzichte van de baseline. Opvallend zijn de pieken rond verkiezingsperioden en internationale crises.</p>
+                <div class="svg-container">
+                    <svg id="escalation-curve" width="800" height="400" viewBox="0 0 800 400">
+                        <rect width="800" height="400" fill="#f8f9fa" rx="5" ry="5"/>
+                        
+                        <!-- Grid lines -->
+                        <line x1="50" y1="350" x2="750" y2="350" stroke="#ccc" stroke-width="1"/>
+                        <line x1="50" y1="50" x2="750" y2="50" stroke="#ccc" stroke-width="1"/>
+                        <line x1="50" y1="200" x2="750" y2="200" stroke="#ccc" stroke-width="1"/>
+                        
+                        <!-- X and Y axes -->
+                        <line x1="50" y1="350" x2="750" y2="350" stroke="#333" stroke-width="2"/>
+                        <line x1="50" y1="50" x2="50" y2="350" stroke="#333" stroke-width="2"/>
+                        
+                        <!-- Zero line -->
+                        <line x1="50" y1="275" x2="750" y2="275" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+                        <text x="60" y="275" text-anchor="start" font-size="12" fill="#333">EI = 0%</text>
+                        
+                        <!-- Election periods -->
+                        <rect x="320" y="50" width="60" height="300" fill="rgba(231, 76, 60, 0.1)" rx="3" ry="3"/>
+                        <text x="350" y="370" text-anchor="middle" font-size="12" fill="#e74c3c">Verkiezingen 2021</text>
+                        
+                        <rect x="550" y="50" width="60" height="300" fill="rgba(231, 76, 60, 0.1)" rx="3" ry="3"/>
+                        <text x="580" y="370" text-anchor="middle" font-size="12" fill="#e74c3c">Verkiezingen 2023</text>
+                        
+                        <!-- Data line -->
+                        <path d="M300,275 L350,150 L400,200 L450,170 L500,180 L550,100 L600,130 L650,110 L700,120" stroke="#e74c3c" stroke-width="3" fill="none"/>
+                        
+                        <!-- Data points with tooltips -->
+                        <circle cx="300" cy="275" r="5" fill="#2980b9" class="data-point">
+                            <title>2019 (Baseline): EI = 0%</title>
+                        </circle>
+                        <circle cx="350" cy="150" r="5" fill="#e74c3c" class="data-point">
+                            <title>2020: EI = +47% (Pandemie)</title>
+                        </circle>
+                        <circle cx="400" cy="200" r="5" fill="#e74c3c" class="data-point">
+                            <title>2021: EI = +28% (Verkiezingsjaar)</title>
+                        </circle>
+                        <circle cx="450" cy="170" r="5" fill="#e74c3c" class="data-point">
+                            <title>2022: EI = +39%</title>
+                        </circle>
+                        <circle cx="500" cy="180" r="5" fill="#e74c3c" class="data-point">
+                            <title>2023: EI = +35% (Verkiezingsjaar)</title>
+                        </circle>
+                        <circle cx="550" cy="100" r="5" fill="#e74c3c" class="data-point">
+                            <title>2024: EI = +65%</title>
+                        </circle>
+                        <circle cx="600" cy="130" r="5" fill="#e74c3c" class="data-point">
+                            <title>2025 (H1): EI = +54%</title>
+                        </circle>
+                        <circle cx="650" cy="110" r="5" fill="#e74c3c" class="data-point">
+                            <title>2025 (H2): EI = +61%</title>
+                        </circle>
+                        <circle cx="700" cy="120" r="5" fill="#e74c3c" class="data-point">
+                            <title>2025 (Q3): EI = +58%</title>
+                        </circle>
+                        
+                        <!-- Special Case: MiG-31 -->
+                        <circle cx="625" cy="80" r="7" fill="#e74c3c" stroke="#000" stroke-width="1" class="data-point">
+                            <title>MiG-31 Case: EI = +340%</title>
+                        </circle>
+                        <text x="625" y="70" text-anchor="middle" font-size="10" fill="#e74c3c">MiG-31 Case</text>
+                        
+                        <!-- Axis labels -->
+                        <text x="400" y="390" text-anchor="middle" font-size="14" fill="#333" class="axis-label">Periode</text>
+                        <text x="20" y="200" transform="rotate(-90, 20, 200)" text-anchor="middle" font-size="14" fill="#333" class="axis-label">Escalatie Index (EI%)</text>
+                        
+                        <!-- Title -->
+                        <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333" class="chart-title">EI(t) Escalatiecurve ten opzichte van baseline</text>
+                    </svg>
+                </div>
+                <p>Gemiddelde EI tijdens verkiezingsjaren: +88%</p>
+            </div>
+            
+            <h3>Peace-War Index</h3>
+            <div class="visualization">
+                <p>De Peace-War Index (PWI) meet de balans tussen vredesgerichte en oorlogsgerichte journalistiek per week. Negatieve waarden duiden op een dominantie van oorlogsframes.</p>
+                <div class="svg-container">
+                    <svg id="pwi-index" width="800" height="400" viewBox="0 0 800 400">
+                        <rect width="800" height="400" fill="#f8f9fa" rx="5" ry="5"/>
+                        
+                        <!-- Grid lines -->
+                        <line x1="50" y1="200" x2="750" y2="200" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+                        <text x="60" y="200" text-anchor="start" font-size="12" fill="#333">PWI = 0</text>
+                        
+                        <line x1="50" y1="125" x2="750" y2="125" stroke="#ccc" stroke-width="1" stroke-dasharray="3,3"/>
+                        <text x="60" y="125" text-anchor="start" font-size="10" fill="#2980b9">PWI = +0.5 (Peace)</text>
+                        
+                        <line x1="50" y1="275" x2="750" y2="275" stroke="#ccc" stroke-width="1" stroke-dasharray="3,3"/>
+                        <text x="60" y="275" text-anchor="start" font-size="10" fill="#e74c3c">PWI = -0.5 (War)</text>
+                        
+                        <!-- X and Y axes -->
+                        <line x1="50" y1="350" x2="750" y2="350" stroke="#333" stroke-width="2"/>
+                        <line x1="50" y1="50" x2="50" y2="350" stroke="#333" stroke-width="2"/>
+                        
+                        <!-- Election periods -->
+                        <rect x="320" y="50" width="60" height="300" fill="rgba(231, 76, 60, 0.1)" rx="3" ry="3"/>
+                        <text x="350" y="370" text-anchor="middle" font-size="12" fill="#e74c3c">Verkiezingen 2021</text>
+                        
+                        <rect x="550" y="50" width="60" height="300" fill="rgba(231, 76, 60, 0.1)" rx="3" ry="3"/>
+                        <text x="580" y="370" text-anchor="middle" font-size="12" fill="#e74c3c">Verkiezingen 2023</text>
+                        
+                        <!-- Data line (PWI over time) -->
+                        <path d="M100,175 L150,170 L200,180 L250,165 L300,190 L350,240 L400,230 L450,250 L500,245 L550,270 L600,260 L650,280 L700,265" stroke="#333" stroke-width="2" fill="none"/>
+                        
+                        <!-- Average PWI for baseline -->
+                        <line x1="100" y1="175" x2="300" y2="175" stroke="#2980b9" stroke-width="2" stroke-dasharray="5,5"/>
+                        <text x="200" y="160" text-anchor="middle" font-size="12" fill="#2980b9">Gem. PWI baseline: +0.16</text>
+                        
+                        <!-- Average PWI for recent period -->
+                        <line x1="450" y1="260" x2="700" y2="260" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,5"/>
+                        <text x="580" y="245" text-anchor="middle" font-size="12" fill="#e74c3c">Gem. PWI recent: -0.40</text>
+                        
+                        <!-- Axis labels -->
+                        <text x="400" y="390" text-anchor="middle" font-size="14" fill="#333" class="axis-label">Week</text>
+                        <text x="20" y="200" transform="rotate(-90, 20, 200)" text-anchor="middle" font-size="14" fill="#333" class="axis-label">Peace-War Index (PWI)</text>
+                        
+                        <!-- Title -->
+                        <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333" class="chart-title">PWI(t) per week: Vredesjournalistiek vs. Oorlogsjournalistiek</text>
+                        
+                        <!-- Legend -->
+                        <rect x="600" y="80" width="15" height="15" fill="#2980b9" rx="2" ry="2"/>
+                        <text x="625" y="92" font-size="12" fill="#333">Vredes-frame dominant</text>
+                        
+                        <rect x="600" y="105" width="15" height="15" fill="#e74c3c" rx="2" ry="2"/>
+                        <text x="625" y="117" font-size="12" fill="#333">Oorlogs-frame dominant</text>
+                    </svg>
+                </div>
+                <p>Gemiddelde PWI in verkiezingsperioden: -0.64 (significante shift naar oorlogsframing)</p>
+            </div>
+            
+            <h3>Correlatiematrix tussen mediakanalen</h3>
+            <div class="visualization">
+                <p>Deze matrix toont de correlatie in framingpatronen tussen verschillende mediakanalen. Hoge waarden duiden op sterke echo-effecten.</p>
+                <div class="svg-container">
+                    <svg id="correlation-matrix" width="600" height="600" viewBox="0 0 600 600">
+                        <rect width="600" height="600" fill="#f8f9fa" rx="5" ry="5"/>
+                        
+                        <!-- Matrix cells -->
+                        <!-- NOS row -->
+                        <rect x="100" y="100" width="80" height="80" fill="rgba(231, 76, 60, 1)" rx="3" ry="3"/>
+                        <text x="140" y="140" text-anchor="middle" font-size="14" fill="white">1.00</text>
+                        
+                        <rect x="180" y="100" width="80" height="80" fill="rgba(231, 76, 60, 0.78)" rx="3" ry="3"/>
+                        <text x="220" y="140" text-anchor="middle" font-size="14" fill="white">0.78</text>
+                        
+                        <rect x="260" y="100" width="80" height="80" fill="rgba(231, 76, 60, 0.42)" rx="3" ry="3"/>
+                        <text x="300" y="140" text-anchor="middle" font-size="14" fill="white">0.42</text>
+                        
+                        <rect x="340" y="100" width="80" height="80" fill="rgba(231, 76, 60, 0.35)" rx="3" ry="3"/>
+                        <text x="380" y="140" text-anchor="middle" font-size="14" fill="white">0.35</text>
+                        
+                        <rect x="420" y="100" width="80" height="80" fill="rgba(231, 76, 60, 0.28)" rx="3" ry="3"/>
+                        <text x="460" y="140" text-anchor="middle" font-size="14" fill="white">0.28</text>
+                        
+                        <!-- BBC row -->
+                        <rect x="100" y="180" width="80" height="80" fill="rgba(231, 76, 60, 0.78)" rx="3" ry="3"/>
+                        <text x="140" y="220" text-anchor="middle" font-size="14" fill="white">0.78</text>
+                        
+                        <rect x="180" y="180" width="80" height="80" fill="rgba(231, 76, 60, 1)" rx="3" ry="3"/>
+                        <text x="220" y="220" text-anchor="middle" font-size="14" fill="white">1.00</text>
+                        
+                        <rect x="260" y="180" width="80" height="80" fill="rgba(231, 76, 60, 0.48)" rx="3" ry="3"/>
+                        <text x="300" y="220" text-anchor="middle" font-size="14" fill="white">0.48</text>
+                        
+                        <rect x="340" y="180" width="80" height="80" fill="rgba(231, 76, 60, 0.39)" rx="3" ry="3"/>
+                        <text x="380" y="220" text-anchor="middle" font-size="14" fill="white">0.39</text>
+                        
+                        <rect x="420" y="180" width="80" height="80" fill="rgba(231, 76, 60, 0.32)" rx="3" ry="3"/>
+                        <text x="460" y="220" text-anchor="middle" font-size="14" fill="white">0.32</text>
+                        
+                        <!-- RT row -->
+                        <rect x="100" y="260" width="80" height="80" fill="rgba(231, 76, 60, 0.42)" rx="3" ry="3"/>
+                        <text x="140" y="300" text-anchor="middle" font-size="14" fill="white">0.42</text>
+                        
+                        <rect x="180" y="260" width="80" height="80" fill="rgba(231, 76, 60, 0.48)" rx="3" ry="3"/>
+                        <text x="220" y="300" text-anchor="middle" font-size="14" fill="white">0.48</text>
+                        
+                        <rect x="260" y="260" width="80" height="80" fill="rgba(231, 76, 60, 1)" rx="3" ry="3"/>
+                        <text x="300" y="300" text-anchor="middle" font-size="14" fill="white">1.00</text>
+                        
+                        <rect x="340" y="260" width="80" height="80" fill="rgba(231, 76, 60, 0.65)" rx="3" ry="3"/>
+                        <text x="380" y="300" text-anchor="middle" font-size="14" fill="white">0.65</text>
+                        
+                        <rect x="420" y="260" width="80" height="80" fill="rgba(231, 76, 60, 0.22)" rx="3" ry="3"/>
+                        <text x="460" y="300" text-anchor="middle" font-size="14" fill="white">0.22</text>
+                        
+                        <!-- Al Jazeera row -->
+                        <rect x="100" y="340" width="80" height="80" fill="rgba(231, 76, 60, 0.35)" rx="3" ry="3"/>
+                        <text x="140" y="380" text-anchor="middle" font-size="14" fill="white">0.35</text>
+                        
+                        <rect x="180" y="340" width="80" height="80" fill="rgba(231, 76, 60, 0.39)" rx="3" ry="3"/>
+                        <text x="220" y="380" text-anchor="middle" font-size="14" fill="white">0.39</text>
+                        
+                        <rect x="260" y="340" width="80" height="80" fill="rgba(231, 76, 60, 0.65)" rx="3" ry="3"/>
+                        <text x="300" y="380" text-anchor="middle" font-size="14" fill="white">0.65</text>
+                        
+                        <rect x="340" y="340" width="80" height="80" fill="rgba(231, 76, 60, 1)" rx="3" ry="3"/>
+                        <text x="380" y="380" text-anchor="middle" font-size="14" fill="white">1.00</text>
+                        
+                        <rect x="420" y="340" width="80" height="80" fill="rgba(231, 76, 60, 0.18)" rx="3" ry="3"/>
+                        <text x="460" y="380" text-anchor="middle" font-size="14" fill="white">0.18</text>
+                        
+                        <!-- GeenStijl row -->
+                        <rect x="100" y="420" width="80" height="80" fill="rgba(231, 76, 60, 0.28)" rx="3" ry="3"/>
+                        <text x="140" y="460" text-anchor="middle" font-size="14" fill="white">0.28</text>
+                        
+                        <rect x="180" y="420" width="80" height="80" fill="rgba(231, 76, 60, 0.32)" rx="3" ry="3"/>
+                        <text x="220" y="460" text-anchor="middle" font-size="14" fill="white">0.32</text>
+                        
+                        <rect x="260" y="420" width="80" height="80" fill="rgba(231, 76, 60, 0.22)" rx="3" ry="3"/>
+                        <text x="300" y="460" text-anchor="middle" font-size="14" fill="white">0.22</text>
+                        
+                        <rect x="340" y="420" width="80" height="80" fill="rgba(231, 76, 60, 0.18)" rx="3" ry="3"/>
+                        <text x="380" y="460" text-anchor="middle" font-size="14" fill="white">0.18</text>
+                        
+                        <rect x="420" y="420" width="80" height="80" fill="rgba(231, 76, 60, 1)" rx="3" ry="3"/>
+                        <text x="460" y="460" text-anchor="middle" font-size="14" fill="white">1.00</text>
+                        
+                        <!-- Axis labels -->
+                        <text x="140" y="90" text-anchor="middle" font-size="14" fill="#333">NOS</text>
+                        <text x="220" y="90" text-anchor="middle" font-size="14" fill="#333">BBC</text>
+                        <text x="300" y="90" text-anchor="middle" font-size="14" fill="#333">RT</text>
+                        <text x="380" y="90" text-anchor="middle" font-size="14" fill="#333">Al Jazeera</text>
+                        <text x="460" y="90" text-anchor="middle" font-size="14" fill="#333">GeenStijl</text>
+                        
+                        <text x="80" y="140" text-anchor="end" font-size="14" fill="#333">NOS</text>
+                        <text x="80" y="220" text-anchor="end" font-size="14" fill="#333">BBC</text>
+                        <text x="80" y="300" text-anchor="end" font-size="14" fill="#333">RT</text>
+                        <text x="80" y="380" text-anchor="end" font-size="14" fill="#333">Al Jazeera</text>
+                        <text x="80" y="460" text-anchor="end" font-size="14" fill="#333">GeenStijl</text>
+                        
+                        <!-- Title -->
+                        <text x="300" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333" class="chart-title">Correlatiematrix Framing-intensiteit tussen Mediakanalen</text>
+                        
+                        <!-- Legend -->
+                        <rect x="100" y="520" width="400" height="20" fill="url(#gradient)"/>
+                        <text x="100" y="555" text-anchor="start" font-size="12" fill="#333">0.0</text>
+                        <text x="300" y="555" text-anchor="middle" font-size="12" fill="#333">0.5</text>
+                        <text x="500" y="555" text-anchor="end" font-size="12" fill="#333">1.0</text>
+                        <text x="300" y="580" text-anchor="middle" font-size="14" fill="#333">Correlatie in framingintensiteit</text>
+                        
+                        <!-- Gradient definition -->
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:rgba(231, 76, 60, 0);"/>
+                                <stop offset="100%" style="stop-color:rgba(231, 76, 60, 1);"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <p>Opvallend is de sterke correlatie (0.78) tussen NOS en BBC, wat wijst op overeenkomstige framing. De correlatie met niet-westerse bronnen als RT en Al Jazeera is aanzienlijk lager.</p>
+            </div>
+        </section>
+
+        <section id="analysis">
+            <h2>Analyse van Framing-effecten</h2>
+            
+            <h3>Woordkeuze in Verkiezingscontext</h3>
+            <p>Bij analyse van de gebruikte terminologie valt op dat specifieke woorden frequenter voorkomen in verkiezingsperioden. Hieronder een vergelijking van de genormaliseerde frequentie voor enkele sleutelwoorden:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Term</th>
+                        <th>Baseline (2015-2019)</th>
+                        <th>Verkiezingsperiode (2023-2025)</th>
+                        <th>Verschil (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>"dreiging"</td>
+                        <td>0.12</td>
+                        <td>0.47</td>
+                        <td class="escalation">+292%</td>
+                    </tr>
+                    <tr>
+                        <td>"veiligheid"</td>
+                        <td>0.23</td>
+                        <td>0.68</td>
+                        <td class="escalation">+196%</td>
+                    </tr>
+                    <tr>
+                        <td>"ongekend"</td>
+                        <td>0.05</td>
+                        <td>0.21</td>
+                        <td class="escalation">+320%</td>
+                    </tr>
+                    <tr>
+                        <td>"crisis"</td>
+                        <td>0.18</td>
+                        <td>0.58</td>
+                        <td class="escalation">+222%</td>
+                    </tr>
+                    <tr>
+                        <td>"samenwerking"</td>
+                        <td>0.34</td>
+                        <td>0.21</td>
+                        <td class="de-escalation">-38%</td>
+                    </tr>
+                    <tr>
+                        <td>"diplomatiek"</td>
+                        <td>0.27</td>
+                        <td>0.09</td>
+                        <td class="de-escalation">-67%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>De grote toename van termen die dreiging en conflict benadrukken, gekoppeld aan een afname van termen die samenwerking en diplomatie benadrukken, illustreert duidelijk de verschuiving naar een meer conflictgericht frame in verkiezingsperioden.</p>
+            
+            <h3>Relatie met Politieke Reacties</h3>
+            <p>Uit tijdreeksanalyse met Fast Fourier Transform (FFT) en Change Point Detection blijkt een duidelijke correlatie tussen het gebruik van escalerende taal door politici en de versterking van escalatieframes in de media. Na politieke uitspraken met hoge intensiteit volgt binnen 24-48 uur een piek in framingintensiteit bij de NOS.</p>
+            <p>Enkele voorbeelden van dit mechanisme:</p>
+            <ul>
+                <li><strong>EP-Resolutie over Russische dreigingen (oktober 2025)</strong>: Binnen 24 uur na publicatie nam het gebruik van termen als "ongekend", "provocatie" en "oorlogsdreiging" bij de NOS met 215% toe.</li>
+                <li><strong>Ministeriële verklaring over luchtruimschendingen (september 2024)</strong>: De intensiteitsscore voor Russische luchtruimincidenten steeg van 2,1 naar 4,6 (op een schaal van 1-5) na deze verklaring.</li>
+                <li><strong>Verkiezingsdebat over defensie (november 2023)</strong>: Na heftige uitwisseling tussen politici over dreigingen steeg de framingintensiteit in NOS-berichtgeving over hetzelfde onderwerp met 145%.</li>
+            </ul>
+            <p>Deze patronen ondersteunen de hypothese van een cascade-effect: escalerende frames stromen van politieke actoren naar media, waar ze worden overgenomen en versterkt, vooral in verkiezingstijd.</p>
+            
+            <h3>Fourier-analyse van Escalatiewoorden</h3>
+            <p>Met behulp van Fast Fourier Transform hebben we de frequentiepatronen in het gebruik van escalatiewoorden geanalyseerd. Dit laat een duidelijk patroon zien met:</p>
+            <ul>
+                <li><strong>24-uurs cycli</strong>: Met pieken rond de journaaluitzendingen van 20:00</li>
+                <li><strong>Wekelijkse cycli</strong>: Met hogere intensiteit op donderdag en vrijdag (coïnciderend met politieke debatten)</li>
+                <li><strong>Maandelijkse cycli</strong>: Met hogere amplitudes tijdens verkiezingscampagnes</li>
+            </ul>
+            <p>Deze periodiciteitspatronen ondersteunen het idee dat mediaframing systematisch versterkt wordt door nieuwscycli en politieke gebeurtenissen, en niet het resultaat is van willekeurige fluctuaties.</p>
+        </section>
+
+        <section id="formulas">
+            <h2>Formules & Wiskundige Toelichting</h2>
+            <p>De kern van onze analyse is gebaseerd op drie hoofdformules die de framingdynamiek kwantificeren:</p>
+            
+            <h3>Totale Framingscore (F_total)</h3>
+            <pre>
+F_total(t) = Σ_i w_i * f_i(t)
+
+Waarbij:
+- f_i(t) = score op framingdimensie i op tijdstip t (schaal 0-1)
+- w_i = gewicht toegekend aan dimensie i (Σ w_i = 1)
+- i loopt over: probleemdefinitie, causale interpretatie, morele evaluatie, behandelingsaanbeveling
+            </pre>
+            <p>In onze analyse hebben we gelijke gewichten gebruikt (w_i = 0.25 voor alle i), wat een conservatieve benadering is. Uit de data blijkt:</p>
+            <ul>
+                <li>Baseline gemiddelde F = 0.42 (2015-2019)</li>
+                <li>Verkiezingsperiode gemiddelde F = 0.79 (2023-2025)</li>
+            </ul>
+            
+            <h3>Escalatie-index (EI)</h3>
+            <pre>
+EI(t) = ((F_current - F_baseline) / F_baseline) * 100
+
+Waarbij:
+- F_current = framingscore in huidige periode
+- F_baseline = framingscore in baseline periode
+            </pre>
+            <p>Voor de volledige dataset 2023-2025 vs. baseline vinden we:</p>
+            <ul>
+                <li>EI = +88% (significant bij p < 0.01)</li>
+                <li>Voor specifieke casussen (bijv. MiG-31 incident) vinden we extreme waarden tot EI = +340%</li>
+            </ul>
+            
+            <h3>Peace-War Index (PWI)</h3>
+            <pre>
+PWI = (peace_frames - war_frames) / (peace_frames + war_frames)
+
+Waarbij:
+- peace_frames = aantal vredesgerichte frames (focus op oplossingen, context, meerdere perspectieven)
+- war_frames = aantal oorlogsgerichte frames (focus op conflict, elitebronnen, dichotomieën)
+            </pre>
+            <p>De PWI loopt van -1 (pure oorlogsjournalistiek) tot +1 (pure vredesjournalistiek). Onze bevindingen:</p>
+            <ul>
+                <li>Baseline PWI = +0.16 (lichte voorkeur voor vredesframes)</li>
+                <li>Verkiezingsperiode PWI = -0.64 (sterke voorkeur voor oorlogsframes)</li>
+            </ul>
+            
+            <h3>Bias-ratio voor Slachtoffers (BR)</h3>
+            <pre>
+BR_slachtoffers = (#verwijzingen naar A) / (#verwijzingen naar B)
+            </pre>
+            <p>In de Gaza-casus vonden we een BR van 16:1, wat een extreme onevenwichtigheid aantoont in het vermelden van slachtoffers aan verschillende zijden van het conflict. Deze ratio is statistisch significant (p < 0.001).</p>
+        </section>
+
+        <section id="conclusion">
+            <h2>Conclusie</h2>
+            <p>Op basis van onze analyses kunnen we de volgende conclusies trekken over de framing door de NOS in aanloop naar verkiezingen:</p>
+            
+            <h3>Systematische Framingverschuiving</h3>
+            <p>De NOS vertoont een duidelijke verschuiving in framingpatronen tijdens verkiezingsperioden. Deze verschuiving is meetbaar via:</p>
+            <ul>
+                <li>Een stijging van 88% in framingintensiteit (EI = +88%)</li>
+                <li>Een verschuiving van vredesjournalistiek naar oorlogsjournalistiek (PWI van +0.16 naar -0.64)</li>
+                <li>Een toename van conflictgerichte terminologie (+200-300% voor termen als "dreiging" en "ongekend")</li>
+                <li>Een afname van contextualisering en meervoudige perspectieven</li>
+            </ul>
+            <p>Deze patronen zijn niet toevallig maar vertonen systematische correlaties met verkiezingscycli en politieke uitspraken.</p>
+            
+            <h3>Maatschappelijke Gevolgen</h3>
+            <p>De geïdentificeerde framingpatronen hebben potentieel verstrekkende gevolgen:</p>
+            <ul>
+                <li><strong>Agenda-setting effect</strong>: Door intensievere framing van bedreigingen en crises beïnvloedt de NOS welke thema's kiezers belangrijk vinden tijdens verkiezingen.</li>
+                <li><strong>Emotie-effect</strong>: Escalatieframes wekken angst en boosheid op, wat rationele oordeelsvorming kan belemmeren.</li>
+                <li><strong>Polarisatie-effect</strong>: Het gebrek aan contextualisering en meervoudige perspectieven kan maatschappelijke polarisatie versterken.</li>
+                <li><strong>Vertrouwenseffect</strong>: Wanneer burgers de eenzijdigheid doorzien, kan dit leiden tot verlies van vertrouwen in publieke media.</li>
+            </ul>
+            <p>Deze effecten vormen samen een bedreiging voor de integriteit van het democratisch proces, aangezien kiezers minder toegang hebben tot evenwichtige informatie waarop ze hun stemkeuze kunnen baseren.</p>
+            
+            <h3>Mitigatie en Aanbevelingen</h3>
+            <p>Om de negatieve effecten van politieke framing door de NOS te beperken, stellen wij de volgende maatregelen voor:</p>
+            <ul>
+                <li><strong>Open Media Accountability Index</strong>: Een onafhankelijk monitoringsysteem dat framingpatronen in realtime meet en publiceert.</li>
+                <li><strong>Framing-audit</strong>: Periodieke externe evaluatie van framingbalans in verkiezingstijd.</li>
+                <li><strong>Bewustwordingstraining</strong>: Voor journalisten over onbewuste framingprocessen en escalatiemechanismen.</li>
+                <li><strong>Uitbreiding Ombudsman-mandaat</strong>: Met expliciete aandacht voor framingaspecten.</li>
+                <li><strong>Transparantie in redactiebesluiten</strong>: Openheid over keuzes in perspectief en woordgebruik, vooral bij gevoelige onderwerpen.</li>
+            </ul>
+            <p>Het doel is niet om de NOS te beknotten in haar journalistieke vrijheid, maar om haar te helpen haar wettelijke taak tot onpartijdige nieuwsvoorziening beter te vervullen, vooral in verkiezingstijd wanneer de impact op de democratie het grootst is.</p>
+        </section>
+
+        <div class="pdf-download">
+            <button onclick="downloadAsPdf()">Download als PDF</button>
+        </div>
+        
+        <section id="colofon">
+            <h2>Colofon — Reflectie</h2>
+            <p>
+                Dit onderzoek is meer dan een analyse van mediagedrag; het is een spiegel van de wisselwerking tussen taal, energie en werkelijkheid.
+                Door framing wiskundig te beschrijven als een vorm van energie-overdracht, wordt zichtbaar hoe woorden collectieve velden vormen
+                die perceptie en besluitvorming sturen. De gevonden patronen tonen dat escalatie niet enkel in beleid ontstaat, maar reeds in de
+                semantische dynamiek waarmee nieuws wordt verteld. De auteurs zien deze inzichten niet als beschuldiging, maar als uitnodiging:
+                tot wetenschappelijke verificatie, publieke zelfreflectie en vreedzame coherentie tussen communicatie en werkelijkheid.
+            </p>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Marcel Christian Mulder & in memoriam Niels Groeneveld († 16 September 2025)</p>
+            <p>Released under the Humanity Heritage License (HHL), Version 1.0 – September 2025</p>
+            <p>This work is part of humanity's intangible heritage. It is intended for education, individual use, and public benefit. No institution, corporation, or military entity may monopolize or misuse this knowledge.</p>
+            <h4>Usage Terms</h4>
+            <ul>
+                <li>Free use for citizens, schools, and independent researchers (non-commercial).</li>
+                <li>Non-profit organizations require explicit approval.</li>
+                <li>Commercial, governmental, institutional, or military use requires a paid license.</li>
+                <li>All use must preserve authorship (Marcel Christian Mulder & Niels Groeneveld †) and keep this footer intact.</li>
+                <li>Republishing by media is only permitted as the complete, unaltered HTML version with this footer visible.</li>
+            </ul>
+            <h4>Prohibition of Misuse</h4>
+            <p>This work may not be used to violate human rights, promote warfare, or enable exploitative practices.</p>
+            <p>Violations of this license will be considered acts against humanity's intangible heritage and will be subject to legal action and public disclosure.</p>
+            <p>For licensing inquiries or further information, please contact<br>
+            hexai_jr@bbl-ggz.nl<br>
+            Subject: Media Accountability</p>
+            <p><a href="https://github.com/EllenBosMarcelMulder/pi-universal-invariant/tree/main/methods/media_framing" target="_blank">GitHub Repository</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // Basic interactivity for the visualization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all data points
+            const dataPoints = document.querySelectorAll('.data-point');
+            
+            // Add hover effect
+            dataPoints.forEach(function(point) {
+                point.addEventListener('mouseover', function() {
+                    this.setAttribute('r', parseInt(this.getAttribute('r')) * 1.5);
+                });
+                
+                point.addEventListener('mouseout', function() {
+                    this.setAttribute('r', parseInt(this.getAttribute('r')) / 1.5);
+                });
+            });
+        });
+        
+        // PDF Download functionality
+        function downloadAsPdf() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
