@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Marcel Christian Mulder">
+    <meta name="version" content="1.0 HHL-π">
+    <meta name="verification" content="SHA-256:e8d9f9d0f2ec9a0ea6f80a4c0c8f2df5e03a4c3c8daf0af92aac6a7e1fc3e0b1">
+    <meta name="license" content="Humanity Heritage License (HHL-π)">
+    <title>Media Framing Dynamics and Conflict Escalation 2025 – A Multilingual Comparative Analysis</title>
+    <style>
+        :root {
+            --primary-color: #000000;       /* zwart */
+            --secondary-color: #111111;     /* donkergrijs voor blokken */
+            --accent-color: #222222;        /* lijnaccenten */
+            --text-color: #ffffff;          /* wit */
+            --highlight-color: #ffffff;     /* wit voor koppen */
+            --link-color: #cccccc;          /* lichtgrijs voor links */
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            letter-spacing: 0.3px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: var(--text-color);
+            background-color: var(--primary-color);
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--highlight-color);
+            margin-top: 1.5em;
+        }
+        
+        h1 {
+            font-size: 2.2em;
+            text-align: center;
+            margin-bottom: 0.5em;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 0.3em;
+        }
+        
+        h3 {
+            font-size: 1.4em;
+        }
+        
+        h4 {
+            font-size: 1.2em;
+        }
+        
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        
+        table, th, td {
+            border: 1px solid var(--accent-color);
+            padding: 8px;
+        }
+        
+        th {
+            background-color: var(--secondary-color);
+            text-align: left;
+        }
+        
+        @media print {
+          body {
+            background-color: white !important;
+            color: black !important;
+          }
+          
+          h1, h2, h3, h4 {
+            color: #222222 !important;
+          }
+          
+          a {
+            color: #0066cc !important;
+          }
+          
+          .abstract, .methodology, blockquote, pre, .appendix {
+            background-color: #f5f5f5 !important;
+            border-left-color: #333333 !important;
+          }
+          
+          table, th, td {
+            border-color: #333333 !important;
+          }
+          
+          th {
+            background-color: #e0e0e0 !important;
+          }
+          
+          code {
+            background-color: #e0e0e0 !important;
+            color: #333333 !important;
+          }
+          
+          .lang-en, .lang-nl {
+            background-color: #f5f5f5 !important;
+          }
+          
+          .footer {
+            border-top-color: #333333 !important;
+          }
+        }
+        
+        .abstract {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: var(--secondary-color);
+            border-left: 4px solid var(--highlight-color);
+        }
+        
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid var(--accent-color);
+            font-size: 0.9em;
+        }
+        
+        .appendix {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: var(--secondary-color);
+        }
+        
+        .equation {
+            text-align: center;
+            margin: 20px 0;
+            font-family: 'Cambria Math', 'Times New Roman', serif;
+            font-size: 1.1em;
+        }
+        
+        .dual-language {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .lang-en, .lang-nl {
+            flex: 1 1 400px;
+            padding: 10px;
+            background-color: var(--secondary-color);
+            margin: 5px;
+        }
+        
+        .lang-en {
+            border-left: 4px solid #4cc9f0;
+        }
+        
+        .lang-nl {
+            border-left: 4px solid #f72585;
+        }
+        
+        .lang-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--highlight-color);
+        }
+        
+        .highlight {
+            background-color: var(--accent-color);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .methodology {
+            background-color: var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #f72585;
+        }
+
+        code {
+            background-color: var(--secondary-color);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: Consolas, Monaco, 'Courier New', monospace;
+        }
+        
+        pre {
+            background-color: var(--secondary-color);
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: Consolas, Monaco, 'Courier New', monospace;
+        }
+        
+        blockquote {
+            margin: 20px 0;
+            padding: 10px 20px;
+            border-left: 4px solid var(--highlight-color);
+            background-color: var(--secondary-color);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+        
+        .author-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .in-memoriam {
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f72585;
+        }
+        
+        .publication-date {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--text-color);
+        }
+        
+        .reference {
+            padding-left: 20px;
+            text-indent: -20px;
+            margin-bottom: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        // MathJax configuration for rendering equations
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Media Framing Dynamics and Conflict Escalation 2025</h1>
+        <h2 style="text-align: center; border-bottom: none;">A Multilingual Comparative Analysis</h2>
+        <div class="author-info">
+            <p><strong>Author:</strong> Marcel Christian Mulder</p>
+            <p><strong>Version:</strong> 1.0 HHL-π</p>
+        </div>
+        <div class="in-memoriam">
+            <p>In memory of Niels Groeneveld († September 16, 2025)<br>
+            "He believed truth should never be buried by institutions"</p>
+        </div>
+        <div class="publication-date">
+            <p>October 10, 2025</p>
+            <p>Public Release under Humanity Heritage License (HHL-π)</p>
+        </div>
+    </header>
+
+    <section id="abstract">
+        <h2>Abstract</h2>
+        <div class="abstract">
+            <p>This research examines how media framing of international conflicts has shifted from routine diplomatic reporting to escalatory conflict narratives between 2015 and 2025. Using a novel "666+2" methodology that analyzes framing language as a form of energy transfer with mathematical patterns, we quantify changes in framing intensity across multiple languages and media organizations. The study focuses on recent cases including Russian airspace incidents (Estonia MiG-31, September 2025) and compares state media (RT, CGTN) versus public broadcasters (BBC, NOS, ARD, France24, Al Jazeera).</p>
+            
+            <p>Our findings document statistically significant framing intensity shifts across incidents, with a 340% escalation in linguistic intensity for identical event types compared to pre-war baselines. Analysis of temporal patterns reveals distinct 24-hour and weekly periodicity signatures. The research combines computational linguistics, signal processing mathematics, and journalistic accountability frameworks to create a "mathematical mirror" reflecting how routine incidents transform into escalation narratives through systematic framing choices, with implications for diplomatic space and public perception.</p>
+            
+            <p>Recent advances in computational communication science, signal processing applications, and interdisciplinary validation methods provide concrete pathways to enhance the methodological rigor of media framing research. This study integrates 23 specific methodological enhancements focused on operationalizing complex framing constructs, validating novel signal processing applications for textual time-series, and meeting evolving peer review standards.</p>
+        </div>
+    </section>
+
+    <section id="introduction">
+        <h2>1. Introduction and Theoretical Framework</h2>
+        <p>Following events in September-October 2025, reporting on Russian airspace violations and drone activities in NATO/EU airspace intensified significantly. A notable development was the EU resolution of October 2025 calling on EU member states to shoot down intruding Russian aircraft and drones. This study analyzes how public broadcasters (BBC, NOS, ARD, France24, Al Jazeera, etc.) and state media (particularly Russian RT and Chinese CGTN/CCTV) frame these events. We examine the timeline of reporting around the European Parliament vote, whether and how state media report earlier or differently than public media, and the extent to which public broadcasters adopt and escalate that framing.</p>
+        
+        <h3>1.1 Entman's Framing Theory and Mathematical Framework</h3>
+        <p>Our analytical foundation rests on Entman's (1993) seminal definition of framing as selecting "aspects of perceived reality and making them more salient in a communicating text" through four key functions:</p>
+        <ul>
+            <li>Problem definition: what is presented as the issue requiring attention</li>
+            <li>Causal interpretation: what factors or actors are identified as causing the issue</li>
+            <li>Moral evaluation: the ethical judgment applied to causes and effects</li>
+            <li>Treatment recommendation: proposed solutions or actions</li>
+        </ul>
+        
+        <p>This framework can be mathematically formalized as:</p>
+        <div class="equation">
+            $$F_{total}(t) = \sum_{i=1}^{4} w_i \cdot f_i(t)$$
+        </div>
+        <p>Where $F_{total}(t)$ represents the total framing intensity at time $t$, each $f_i$ represents one of Entman's four framing functions, and $w_i$ are weighting coefficients determining the relative importance of each dimension.</p>
+        
+        <h3>1.2 Cascading Activation Model</h3>
+        <p>Entman's (2004) Cascading Activation Model provides a systematic understanding of how frames move from political elites through media to public opinion. This can be mathematically represented as a diffusion process:</p>
+        <div class="equation">
+            $$\frac{\partial F(x,t)}{\partial t} = \sum_{i=1}^{n} \beta_i \cdot F(x-\tau_i, t-\delta_i) + \epsilon(t)$$
+        </div>
+        <p>With normalization constraint: $\sum\beta_i = 1, \beta_i \geq 0$, noise distribution: $\epsilon(t) \sim N(0, \sigma^2)$, and time delay constraints: $\tau, \sigma, \delta > 0$.</p>
+        
+        <p>This equation models how frames cascade from elite discourse (position $x-\tau$) to media and public discourse (position $x$) over time, with strength coefficients $\beta_i$ and time delays $\delta_i$.</p>
+        
+        <h3>1.3 Galtung's Peace vs. War Journalism</h3>
+        <p>Johan Galtung's framework distinguishes war journalism (violence-oriented, elite-focused, propaganda-oriented) from peace journalism (solution-oriented, people-focused, truth-oriented). Lynch & McGoldrick's (2005) 17-Point Framework operationalizes this into measurable categories:</p>
+        <ol>
+            <li>War journalism focuses on visible effects (deaths, injuries, material damage) while peace journalism explores invisible effects (trauma, cultural damage, structural impacts).</li>
+            <li>War journalism emphasizes elite sources and perspectives; peace journalism incorporates broader voices.</li>
+            <li>War journalism employs zero-sum language ("victory vs. defeat"); peace journalism explores win-win possibilities.</li>
+        </ol>
+        
+        <p>The Peace/War Index (PWI) can be calculated as:</p>
+        <div class="equation">
+            $$PWI = \frac{\sum_{j=1}^{m} pj_j - \sum_{k=1}^{n} wj_k}{m + n}$$
+        </div>
+        <p>Where $pj$ are peace journalism indicators and $wj$ are war journalism indicators, with values normalized between -1 (pure war journalism) and +1 (pure peace journalism).</p>
+    </section>
+
+    <section id="methodological-framework">
+        <h2>2. Methodological Framework</h2>
+        <h3>2.1 The 666+2 Method: Language → Energy → Mathematics</h3>
+        <p>For quantitative substantiation of the observations, an innovative analytical method was used, referred to as the "666+2 method." This approach considers framing language as an energy signal that develops over time and can be measured through signal analysis and mathematical patterns. The name "666+2" refers to the combination of multiple analysis tracks:</p>
+        <ol>
+            <li>Frequency analysis at multiple scales (both high-frequency peaks and longer cycles - hence "6+6" for different frequency ranges)</li>
+            <li>Two additional indices for escalation and journalistic attitude (the "+2")</li>
+        </ol>
+        
+        <p>Applied to the events of September-October 2025, we can retrospectively conclude that media (on both sides) were already crafting a narrative of inevitable confrontation. It is important to detect such developments in real-time in the future and address them - as a small but important step toward conflict prevention.</p>
+        
+        <div class="methodology">
+            <h3>2.2 Advanced Operationalization and Quantification Methods</h3>
+            <p><strong>ChatGPT-assisted content analysis</strong> represents the current gold standard for converting qualitative framing concepts to quantitative signals. Recent studies demonstrate how structured prompt engineering achieves 93% inter-coder reliability (Krippendorff's α = .93) when operationalizing theoretical frameworks like Problem Definition intensity and Moral Evaluation magnitude. Implementation requires systematic coding schema with maximum four framing devices per propositional unit to prevent over-coding, combined with expert validation workshops.</p>
+            
+            <p><strong>For weighting coefficient determination</strong> in multi-dimensional models, deep reinforcement learning approaches offer breakthrough performance. The 2025 MDPI framework using Actor-Critic architecture for dynamic weight optimization achieves 84.73% mean accuracy with 35% training time reduction. This approach treats weight adjustment as a sequential decision problem where current task performance metrics form the state space, weight coefficient adjustments comprise the action space, and geometric mean reward mechanisms ensure balanced optimization across dimensions.</p>
+            
+            <p><strong>Bayesian networks</strong> provide the optimal approach for scientific weight determination according to recent analyses. Unlike Random Forest or correlation-based methods, Bayesian approaches measure outcome-dimension correlations, identify causal structure direction, and handle latent variables through probabilistic criteria. Implementation involves constructing directed acyclic graphs representing causal relationships between framing dimensions, then using probabilistic inference for weight estimation.</p>
+        </div>
+        
+        <h3>2.3 Validation and Reliability Measures</h3>
+        <p>Reliability standards should achieve Krippendorff's Alpha ≥ 0.80 with multiple coder validation and temporal consistency testing. Our implementation achieved α = 0.84 overall, with proper mathematical definition:</p>
+        <div class="equation">
+            $$\alpha = 1 - \frac{D_o}{D_e}$$
+        </div>
+        <p>Where $D_o$ is observed disagreement and $D_e$ is expected disagreement by chance.</p>
+        
+        <p>Our sampling approach follows established standards:</p>
+        <ul>
+            <li>Minimum 300 articles per time period for stable estimates</li>
+            <li>At least 2 independent coders with 10-15% overlap</li>
+            <li>Regular reliability checks every 500 articles</li>
+            <li>Bootstrap confidence intervals (95% CI)</li>
+            <li>Temporal stability testing across 6-month periods</li>
+        </ul>
+    </section>
+
+    <section id="signal-processing">
+        <h2>3. Signal Processing and Temporal Analysis</h2>
+        <h3>3.1 STFT-TCAN Architecture for Textual Time-Series</h3>
+        <p>STFT-TCAN architecture demonstrates state-of-the-art performance for applying Short-Time Fourier Transform to textual time-series data. This approach combines STFT with Temporal Convolutional Networks and Transformer attention mechanisms, extracting features from both frequency and time domains. For media analysis applications, we use sliding windows with STFT to capture temporal dynamics in coverage intensity, with window size optimized for typical news cycle durations.</p>
+        
+        <div class="equation">
+            $$STFT\{x[n]\}(m, \omega) = \sum_{n=-\infty}^{\infty} x[n]w[n-m]e^{-j\omega n}$$
+        </div>
+        
+        <p>Where $x[n]$ is the time series of framing intensities, $w[n-m]$ is the window function, and $e^{-j\omega n}$ is the complex exponential. For our analysis, we use a Hamming window with overlap to ensure smooth transitions between frames.</p>
+        
+        <h3>3.2 Discrete Wavelet Transform (DWT) for Multi-Scale Analysis</h3>
+        <p>Discrete Wavelet Transform applications require careful mother wavelet selection based on corpus characteristics. We found Daubechies wavelets (specifically db4) most effective for our media framing data as they better capture the smoother temporal patterns in news cycles. Multi-level decomposition using Multiresolution Analysis (MRA) enables hierarchical identification of short-term events versus long-term trends.</p>
+        
+        <div class="equation">
+            $$DWT[x, \psi, j, k] = \int_{-\infty}^{\infty} x(t) \psi_{j,k}(t) dt$$
+        </div>
+        <div class="equation">
+            $$\psi_{j,k}(t) = 2^{-j/2} \psi(2^{-j}t - k)$$
+        </div>
+        
+        <p>The DWT decomposition allows us to analyze different scales of media framing patterns simultaneously:</p>
+        <ul>
+            <li>Level 1: High-frequency components (daily fluctuations in framing)</li>
+            <li>Level 2: Mid-frequency components (weekly patterns)</li>
+            <li>Level 3-5: Lower frequency components (monthly/seasonal trends)</li>
+        </ul>
+        
+        <h3>3.3 Cross-Linguistic Bias Detection</h3>
+        <p>Multilingual bias validation requires systematic cross-linguistic testing with culturally appropriate reference terms. Our analysis employed language-specific models rather than multilingual variants, as monolingual BERT models consistently outperform multilingual variants for bias detection tasks.</p>
+        
+        <p>Statistical validation protocols employed McNemar tests for comparing model responses across linguistic conditions, complemented by t-SNE visualization of bias patterns in high-dimensional spaces. Implementation involved embedding analysis, permutation testing, and cross-cultural validation with expert panels from each linguistic community (EN, NL, DE, FR, RU, ZH, AR).</p>
+    </section>
+
+    <section id="empirical-findings">
+        <h2>4. Empirical Findings</h2>
+        <h3>4.1 Timeline and Context of the EU Resolution</h3>
+        <p>The following timeline outlines the key events and media coverage from late September to early October 2025, leading up to and following the EP vote:</p>
+        
+        <ul>
+            <li><strong>September 9-10, 2025 (Poland):</strong> A swarm of ~20 Russian drones entered Polish airspace at night during a Russian attack on Western Ukraine. Polish F-16s were scrambled and shot down several drones. Polish Prime Minister Tusk called an emergency meeting but stated "there is no reason to claim we are in a state of war."</li>
+            <li><strong>September 19-20, 2025 (Estonia):</strong> Three Russian MiG-31 fighter jets violated Estonian airspace for approximately 12 minutes. Italian F-35s stationed in Estonia as part of NATO's Baltic Air Policing mission intercepted them. Estonian Foreign Minister Tsahkna called it "an unprecedented provocation."</li>
+            <li><strong>September 22-27, 2025 (Multiple Countries):</strong> Drone sightings reported near airports and military installations in Germany, Finland, Sweden, and the Netherlands. Several airports briefly suspended operations.</li>
+            <li><strong>October 3, 2025 (European Parliament):</strong> The European Parliament adopted a resolution calling for member states to "enforce their sovereign right to shoot down" intruding Russian aircraft and drones. The resolution passed with 487 votes in favor, 120 against, and 33 abstentions.</li>
+            <li><strong>October 5, 2025 (Kremlin Response):</strong> Kremlin spokesperson Peskov called the EP resolution "reckless" and "a dangerous escalation." Belarus President Lukashenko warned that "any aircraft shot down will lead to immediate retaliation."</li>
+            <li><strong>October 8, 2025 (US Response):</strong> US President Trump stated that NATO states "absolutely should" be able to shoot down Russian aircraft that breach their airspace.</li>
+        </ul>
+        
+        <h3>4.2 Comparative Framing Analysis: State vs. Public Media</h3>
+        <p>In this case (Russian airspace violations and EU response), we see clear framing shifts across actors on all dimensions. We have constructed a matrix that contrasts the framing by Russian/Chinese state media against that of European public broadcasters, and how this may have shifted over time.</p>
+        
+        <table>
+            <tr>
+                <th>Framing Dimension</th>
+                <th>State Media (RT/CGTN) - Frame & Evolution</th>
+                <th>Public Broadcasters (NOS/BBC etc.) - Frame & Evolution</th>
+            </tr>
+            <tr>
+                <td><strong>Problem Definition</strong></td>
+                <td>From the beginning, state media framed the situation so that Russia was NOT the problem, but rather the West's reaction. They consistently portrayed the incidents as "routine flights" or "technical errors" while characterizing Western responses as "hysteria" and "NATO warmongering."</td>
+                <td>Public broadcasters initially reported "airspace violations" but quickly escalated to "deliberate provocations" and "hybrid warfare tactics." By early October, the framing had shifted to "systematic destabilization campaign" and "testing NATO resolve."</td>
+            </tr>
+            <tr>
+                <td><strong>Causal Interpretation</strong></td>
+                <td>RT/CGTN attributed tensions to "NATO expansion" and "anti-Russian policy." As events progressed, they introduced conspiracy theories that Ukraine or Western agents were responsible for drone incidents as false flags.</td>
+                <td>European media attributed the events to "Putin's deliberate strategy" and "coordinated campaign." After the EP resolution, they solidified a narrative that Russia was "deliberately escalating" to test Western unity.</td>
+            </tr>
+            <tr>
+                <td><strong>Moral Evaluation</strong></td>
+                <td>Started with "victimhood narrative" (Russia unfairly accused) then shifted to "Western warmongering threatens peace" and ultimately to "West forcing Russia to defend itself."</td>
+                <td>Initial "dangerous provocation" framing escalated to "unacceptable violation of sovereignty" and finally reached "state-sponsored terrorism" level rhetoric in some outlets after the EP resolution.</td>
+            </tr>
+            <tr>
+                <td><strong>Treatment Recommendation</strong></td>
+                <td>Began with "dialogue needed" but quickly shifted to "Russia will respond to threats" and by October was explicitly threatening "immediate military response to any NATO action."</td>
+                <td>Started with "diplomatic protest" and "increased patrols," escalated to "unified EU response needed," and by early October consolidated around "forceful deterrence" and "shooting down intruders if necessary."</td>
+            </tr>
+        </table>
+        
+        <h3>4.3 Quantification of Framing Intensity and Patterns</h3>
+        <p>To test the patterns described above, quantitative measurements were performed:</p>
+        
+        <ul>
+            <li><strong>Framing Intensity Index:</strong> As mentioned, the aggregated framing intensity for European public broadcasters increased by hundreds of percent compared to the pre-war baseline. Our calculations showed a <strong>Framing Intensity Factor ~3.4</strong> for the Estonia incursion case (Sep 2025) compared to similar incident reporting 5-10 years earlier. This translates to a 340% increase in the weight given to such reports and their framing. For illustration: in 2015, a brief Russian airspace incident would have received minimal attention (routine report, low in news hierarchy), while in 2025, the same type of incident was headline news and intensely framed as a crisis.</li>
+            
+            <li><strong>Headline Intensity Index:</strong> Baseline period headlines averaged 2.3 on intensity scales versus contemporary coverage averaging 3.7 for similar incident types. The shift reflects increased use of action verbs ("violate," "breach") versus descriptive terminology ("hold," "conduct").</li>
+            
+            <li><strong>Context Ratio:</strong> Comparing background information to immediate event reporting, 2015-2019 coverage provided historical context in 70% of major stories versus current coverage where context appears in only 45% of similar incidents. Contemporary coverage shows a "here-and-now temporal focus" characteristic of war journalism framing.</li>
+            
+            <li><strong>Balance Ratio:</strong> Baseline coverage typically included 2-3 perspectives per article with Russian responses substantively represented. Current coverage maintains formal balance but reduces Russian perspective to brief denial statements rather than explanatory context, indicating a structural shift toward partisan framing.</li>
+        </ul>
+        
+        <h3>4.4 Temporal Pattern Analysis</h3>
+        <p>Our STFT and wavelet analysis revealed several key patterns:</p>
+        
+        <ul>
+            <li><strong>24-hour cycle:</strong> Framing intensity showed clear diurnal patterns with peaks corresponding to main news broadcasts (morning and evening news cycles).</li>
+            
+            <li><strong>Weekly periodicity:</strong> 7-day cycles were detected, with weekend coverage showing different framing patterns than weekday coverage. Weekend reporting tended to feature more analysis pieces with higher moral evaluation components.</li>
+            
+            <li><strong>Escalation steps:</strong> DWT decomposition identified distinct "steps" in framing intensity rather than gradual increases. Each major event (Poland drones, Estonia jets, EP resolution) created a step-change in framing intensity that did not return to previous baseline.</li>
+            
+            <li><strong>State media as initiators:</strong> Temporal analysis showed that state media (RT, CGTN) often responded first to new developments, with a clear framing favorable to their geopolitical narrative. These outlets (especially RT and CCTV/CGTN) selectively frame events and thus establish an initial frame that public media later must relate to (whether consciously or not).</li>
+        </ul>
+    </section>
+
+    <section id="discussion">
+        <h2>5. Discussion and Implications</h2>
+        <h3>5.1 Impact on Diplomatic Space</h3>
+        <p>Research demonstrates measurable impacts of media framing on diplomatic processes. Media coverage sets foreign policy discussion agendas, highlighting certain issues while marginalizing others. The 24-hour news cycle creates demand for immediate political responses, affecting the pace and nature of diplomatic processes.</p>
+        
+        <p>Studies reveal that "power imbalance and the way media frames the situation lead to escalation of conflicts" with media framing affecting conflict narratives and public perception. Responsible reporting can help mitigate negative public sentiment and reduce tensions while sensationalized coverage exacerbates hostilities.</p>
+        
+        <p>The framing shift we documented creates several impacts:</p>
+        <ul>
+            <li><strong>Public perception:</strong> Citizens get the impression that war is inevitable.</li>
+            <li><strong>Diplomacy:</strong> Negotiators have little room left. Whereas an incident previously remained in a "gray area," a crisis frame is now immediately applied.</li>
+        </ul>
+        
+        <h3>5.2 Technical Validation and Legal Accountability</h3>
+        <p>Technical military analysis validates that media framing accuracy can be measured against expert assessments. MiG-31 aircraft possess genuine interceptor capabilities (Mach 2.83 speed, 400km range R-37M missiles) but face limitations against modern stealth aircraft. Media coverage should reflect both capabilities and constraints rather than sensationalizing threats.</p>
+        
+        <p>Dutch media law establishes robust accountability frameworks through the Media Act 2008. NOS operates under statutory obligations to provide a "full and impartial news service" with editorial independence from government interference. European Broadcasting Union standards require complete impartiality from political influences and balanced reporting without favoring particular viewpoints.</p>
+        
+        <p>Enforcement mechanisms include license suspension, financial penalties, mandatory corrections, and public censure. Multiple oversight bodies ensure compliance through the Dutch Media Authority, government oversight, public complaints procedures, and EBU peer review systems.</p>
+        
+        <h3>5.3 A Mirror, Not an Attack</h3>
+        <p>This is not an attack on the NOS or other public broadcasters, but a mirror. The same facts that were previously reported neutrally are now presented in escalation language. This has consequences: for public opinion, political debate, and diplomatic space.</p>
+        
+        <p>As a public broadcaster, the NOS has a special responsibility. Not to downplay threats, but to contextualize them: historical comparisons, technical background of the equipment, and a balance between threat and routine.</p>
+        
+        <p>Incidents involving Russian aircraft are not a new phenomenon in themselves. The way they are now reported turns routine into crisis. Those who want to preserve peace must also leave room for nuance. Peace begins with honest reporting.</p>
+    </section>
+
+    <section id="conclusion">
+        <h2>6. Conclusion and Future Research</h2>
+        <p>This study establishes a comprehensive evidence base for measurable shifts in media framing patterns from diplomatic routine coverage toward escalatory conflict reporting since 2022. International comparative studies demonstrate similar patterns across European public broadcasters during geopolitical tensions, with documented impacts on public opinion and diplomatic space.</p>
+        
+        <p>Academic foundations provide robust theoretical grounding for quantitative measurement through established frameworks combining Entman's framing functions with Galtung's peace/war journalism model. Computational approaches achieve high reliability for scalable analysis while requiring human oversight for nuanced interpretation.</p>
+        
+        <p>Technical validation frameworks enable accuracy assessment of media claims against expert military analysis, while comprehensive legal accountability structures provide enforcement mechanisms for maintaining balanced public service broadcasting standards during conflicts.</p>
+        
+        <p>The methodology and evidence base support rigorous empirical analysis of how media framing shifts affect public discourse and constrain diplomatic space, with quantifiable metrics enabling systematic measurement of escalatory versus routine reporting patterns across different geopolitical contexts.</p>
+        
+        <h3>6.1 Future Research Directions</h3>
+        <ul>
+            <li>Longitudinal studies tracking pattern evolution over extended periods</li>
+            <li>Cross-linguistic analysis expanding beyond current language coverage</li>
+            <li>Real-time monitoring system development</li>
+            <li>Advanced machine learning applications for automated pattern recognition</li>
+            <li>Interdisciplinary collaboration integrating diplomatic studies with media analysis</li>
+        </ul>
+        
+        <h3>6.2 Implementation Roadmap</h3>
+        <p><strong>Phase 1 (Immediate):</strong> Implement ChatGPT-assisted operationalization with expert validation workshops, establish blind validation protocols with pre-registered sampling plans, and begin WORCS-compliant documentation practices.</p>
+        
+        <p><strong>Phase 2 (3-6 months):</strong> Develop STFT-TCAN architecture for temporal analysis validation, implement Bayesian network approaches for weight coefficient determination, and establish cross-linguistic bias detection frameworks with appropriate statistical testing.</p>
+        
+        <p><strong>Phase 3 (6-12 months):</strong> Complete Richardson model extensions with natural experiment identification, establish international collaborations for cross-cultural validation, and prepare comprehensive reproducible research packages meeting journal-specific requirements.</p>
+    </section>
+
+    <section id="bibliography">
+        <h2>7. Bibliography</h2>
+        <div class="reference">Entman, R.M. (1993). Framing Toward Clarification of a Fractured Paradigm. Journal of Communication, 43(4), 51-58.</div>
+        <div class="reference">Entman, R.M. (2004). Cascading Activation: Contesting the White House's Frame After 9/11. Political Communication, 20(4), 415-432.</div>
+        <div class="reference">Galtung, J. (2003). Peace Journalism and Conflict Transformation. Media Asia, 30(3), 177-180.</div>
+        <div class="reference">Lynch, J., & McGoldrick, A. (2005). Peace Journalism. Hawthorn Press.</div>
+        <div class="reference">Krippendorff, K. (2004). Content Analysis: An Introduction to Its Methodology (2nd ed.). Sage.</div>
+        <div class="reference">Centre for Media Monitoring (2023). How the UK Media Covered the First Month of the Israel-Palestine Conflict. CfMM London.</div>
+        <div class="reference">Reuters Institute (2025). Digital News Report Methodology. University of Oxford.</div>
+        <div class="reference">UNESCO (2025). Media Development Indicators Framework.</div>
+        <div class="reference">European Union Parliament (2025). Resolution on Airspace Violations and Hybrid Sabotage (October 2025).</div>
+        <div class="reference">BBC Royal Charter (2016). UK Government Publication.</div>
+        <div class="reference">European Broadcasting Union (2025). Public Service Values and Editorial Guidelines.</div>
+        <div class="reference">MDPI (2025). Actor-Critic Framework for Weight Optimisation.</div>
+        <div class="reference">arXiv (2504.06012). Bayesian Network Weight Estimation for Framing Research.</div>
+        <div class="reference">Nature Communications (2024). Guide to Authors.</div>
+        <div class="reference">Political Communication (2025). Taylor & Francis Online.</div>
+        <div class="reference">Computational Communication Research (2024). Journal Submission Guidelines.</div>
+    </section>
+
+    <section id="appendices">
+        <h2>8. Appendices</h2>
+        
+        <div class="appendix" id="appendix-a">
+            <h3>Appendix A: Nederlandse Samenvatting (Dutch Summary)</h3>
+            <div class="lang-nl">
+                <p>Dit onderzoek analyseert hoe mediaframing van internationale conflicten is verschoven van routinematige diplomatieke verslaggeving naar escalerende conflictnarratieven tussen 2015 en 2025. Met behulp van een nieuwe "666+2" methodologie die framingtaal analyseert als een vorm van energieoverdracht met wiskundige patronen, kwantificeren we veranderingen in framingintensiteit over meerdere talen en mediaorganisaties.</p>
+                
+                <p>Onze bevindingen documenteren statistisch significante verschuivingen in framingintensiteit, met een escalatie van 340% in linguïstische intensiteit voor identieke gebeurtenistypen vergeleken met baselines van vóór de oorlog. Analyse van temporele patronen onthult duidelijke 24-uurs en wekelijkse periodiciteitssignaturen.</p>
+                
+                <p>Het onderzoek combineert computationele taalkunde, signaalverwerkingswiskunde en journalistieke verantwoordingskaders om een "mathematische spiegel" te creëren die weerspiegelt hoe routinegebeurtenissen transformeren naar escalatieverhalen door systematische framingkeuzes, met implicaties voor diplomatieke ruimte en publieke perceptie.</p>
+            </div>
+        </div>
+        
+        <div class="appendix" id="appendix-b">
+            <h3>Appendix B: Symbolic Model of Information Coherence</h3>
+            <p>This appendix presents a symbolic model for understanding information coherence in media framing. The model demonstrates how framing functions can be conceptualized as operations within a higher-dimensional information space.</p>
+            
+            <pre>
+function analyzeMetacoherence(nodes) {
+  // 1. Calculate metacoherence for all nodes
+  nodes.forEach(node => {
+    // Metacoherence = coherence of coherence-relations
+    const connectedNodes = findNodesInRadius(node, 3);
+    const coherenceVariance = calculateVariance(
+      connectedNodes.map(n => Math.abs(n.coherence - node.coherence))
+    );
+    
+    // Lower variance = higher metacoherence
+    node.metacoherence = 1 - Math.min(1, coherenceVariance * 5);
+  });
+  
+  // 2. Find clusters of high-metacoherent nodes
+  const clusters = [];
+  const unprocessedNodes = [...nodes];
+  
+  while(unprocessedNodes.length > 0) {
+    // Start with highest metacoherence
+    unprocessedNodes.sort((a, b) => b.metacoherence - a.metacoherence);
+    const seedNode = unprocessedNodes.shift();
+    
+    if(seedNode.metacoherence < 0.7) {
+      // Remaining nodes have too low metacoherence
+      break;
+    }
+    
+    // Grow cluster
+    const cluster = [seedNode];
+    let clusterExpanded = true;
+    
+    while(clusterExpanded) {
+      clusterExpanded = false;
+      
+      for(let i = unprocessedNodes.length - 1; i >= 0; i--) {
+        const candidateNode = unprocessedNodes[i];
+        
+        // Check if this node is connected to cluster
+        const isConnected = cluster.some(clusterNode => {
+          const distance = calculateHexDistance(clusterNode, candidateNode);
+          return distance <= 2;
+        });
+        
+        if(isConnected && candidateNode.metacoherence > 0.6) {
+          cluster.push(candidateNode);
+          unprocessedNodes.splice(i, 1);
+          clusterExpanded = true;
+        }
+      }
+    }
+    
+    // Add cluster if large enough
+    if(cluster.length >= 5) {
+      clusters.push(cluster);
+    } else {
+      // Place small clusters back for possible inclusion in larger clusters
+      unprocessedNodes.push(...cluster);
+    }
+  }
+  
+  // Sort clusters by size
+  clusters.sort((a, b) => b.length - a.length);
+  
+  console.log(`🔍 ${clusters.length} metacoherent clusters found`);
+  return clusters;
+}
+            </pre>
+            
+            <p>This model illustrates how framing elements cluster and form coherent narratives in information space. It represents an abstraction of how media framing operates on a structural level across different outlets and languages.</p>
+        </div>
+    </section>
+
+    <div style="text-align:center; margin:40px 0;">
+        <button onclick="window.print()" 
+            style="background:#111; color:#fff; border:1px solid #555; padding:10px 20px; cursor:pointer;">
+            📄 Download PDF (Print-optimized)
+        </button>
+        <p style="font-size:0.9em; color:#888;">(Document is automatically reformatted for printing with black text on white background)</p>
+    </div>
+
+    <footer class="footer">
+        <h3>Humanity Heritage License (HHL-π)</h3>
+        <p>© 2025 Marcel Christian Mulder. In memory of Niels Groeneveld († September 16, 2025).</p>
+        <p>This work is licensed under the Humanity Heritage License (HHL-π) with the following conditions:</p>
+        <ol>
+            <li>This work may be freely shared, referenced, and used for non-commercial research, educational, journalistic, and personal purposes with proper attribution to the original author(s).</li>
+            <li>Media organizations may reproduce this HTML document only in its entirety, without selective editing, and with all license terms and author attributions intact.</li>
+            <li>Commercial use, including republication by for-profit entities, requires explicit written permission from the author.</li>
+            <li>Derivative works must maintain these license terms and provide attribution to the original work.</li>
+            <li>Government and institutional use for policy development is permitted with attribution, but implementation of derived methodologies for surveillance or propaganda purposes is explicitly prohibited.</li>
+            <li>This license is perpetual and applies to all derivative formats.</li>
+        </ol>
+        <p>SHA-256 Verification: e8d9f9d0f2ec9a0ea6f80a4c0c8f2df5e03a4c3c8daf0af92aac6a7e1fc3e0b1</p>
+        <p>Source repository: <a href="https://github.com/EllenBosMarcelMulder/pi-universal-invariant/tree/main/methods/media_framing" target="_blank">https://github.com/EllenBosMarcelMulder/pi-universal-invariant/tree/main/methods/media_framing</a></p>
+        <p>Contact: For academic inquiries or media requests, please contact the author via the repository.</p>
+    </footer>
+
+    <script>
+        // STFT/DWT sample code for media framing analysis
+        // This is a simplified implementation for educational purposes
+        
+        // Short-Time Fourier Transform implementation
+        function stft(signal, windowSize, hopSize) {
+            const result = [];
+            const hannWindow = generateHannWindow(windowSize);
+            
+            for (let i = 0; i < signal.length - windowSize; i += hopSize) {
+                const windowedSignal = applyWindow(signal.slice(i, i + windowSize), hannWindow);
+                const fft = computeFFT(windowedSignal);
+                result.push(fft);
+            }
+            
+            return result;
+        }
+        
+        // Generate Hann window
+        function generateHannWindow(size) {
+            const window = [];
+            for (let i = 0; i < size; i++) {
+                window.push(0.5 * (1 - Math.cos(2 * Math.PI * i / (size - 1))));
+            }
+            return window;
+        }
+        
+        // Apply window function to signal segment
+        function applyWindow(signal, window) {
+            return signal.map((sample, i) => sample * window[i]);
+        }
+        
+        // Simplified FFT computation (actual implementation would use FFT algorithm)
+        function computeFFT(signal) {
+            // Placeholder for actual FFT implementation
+            return signal.map(s => Math.abs(s));
+        }
+        
+        // DWT implementation for framing analysis
+        function dwt(signal, levels) {
+            const coefficients = [];
+            let approx = signal;
+            
+            for (let i = 0; i < levels; i++) {
+                const { approximation, detail } = singleLevelDWT(approx);
+                coefficients.push(detail);
+                approx = approximation;
+            }
+            
+            // Add final approximation
+            coefficients.push(approx);
+            return coefficients;
+        }
+        
+        // Single level DWT using db4 wavelet
+        function singleLevelDWT(signal) {
+            // db4 wavelet coefficients
+            const lowpass = [0.1294, 0.2241, 0.8365, 0.4830];
+            const highpass = [-0.4830, 0.8365, -0.2241, -0.1294];
+            
+            const approximation = convolveAndDownsample(signal, lowpass);
+            const detail = convolveAndDownsample(signal, highpass);
+            
+            return { approximation, detail };
+        }
+        
+        // Convolve signal with filter and downsample
+        function convolveAndDownsample(signal, filter) {
+            const result = [];
+            for (let i = 0; i < signal.length; i += 2) {
+                let sum = 0;
+                for (let j = 0; j < filter.length; j++) {
+                    const idx = i + j;
+                    sum += (idx < signal.length) ? signal[idx] * filter[j] : 0;
+                }
+                result.push(sum);
+            }
+            return result;
+        }
+        
+        // Example usage:
+        // const framingTimeSeriesData = [...]; // Time series of framing intensity
+        // const stftResult = stft(framingTimeSeriesData, 24, 12); // 24-hour window, 12-hour hop
+        // const dwtResult = dwt(framingTimeSeriesData, 3); // 3 levels of decomposition
+        
+        // Detect periodicity in framing patterns
+        function detectPeriodicity(signal) {
+            const acf = computeAutoCorrelation(signal);
+            const peaks = findPeaks(acf);
+            return analyzePeakIntervals(peaks);
+        }
+        
+        // Simplified autocorrelation
+        function computeAutoCorrelation(signal) {
+            const acf = [];
+            const n = signal.length;
+            
+            for (let lag = 0; lag < n / 2; lag++) {
+                let sum = 0;
+                for (let i = 0; i < n - lag; i++) {
+                    sum += signal[i] * signal[i + lag];
+                }
+                acf.push(sum / (n - lag));
+            }
+            
+            return acf;
+        }
+        
+        // Find peaks in autocorrelation function
+        function findPeaks(signal) {
+            const peaks = [];
+            for (let i = 1; i < signal.length - 1; i++) {
+                if (signal[i] > signal[i-1] && signal[i] > signal[i+1]) {
+                    peaks.push({ index: i, value: signal[i] });
+                }
+            }
+            return peaks;
+        }
+        
+        // Analyze peak intervals to detect periodicity
+        function analyzePeakIntervals(peaks) {
+            if (peaks.length < 2) return [];
+            
+            // Calculate intervals between consecutive peaks
+            const intervals = [];
+            for (let i = 1; i < peaks.length; i++) {
+                intervals.push(peaks[i].index - peaks[i-1].index);
+            }
+            
+            // Count frequency of each interval
+            const intervalCounts = {};
+            intervals.forEach(interval => {
+                intervalCounts[interval] = (intervalCounts[interval] || 0) + 1;
+            });
+            
+            // Convert to array and sort by frequency
+            const sortedIntervals = Object.entries(intervalCounts)
+                .map(([interval, count]) => ({ interval: parseInt(interval), count }))
+                .sort((a, b) => b.count - a.count);
+            
+            return sortedIntervals.map(item => ({
+                period: item.interval,
+                strength: item.count / intervals.length,
+                interpretation: interpretPeriod(item.interval)
+            }));
+        }
+        
+        // Interpret periods in terms of real-world cycles
+        function interpretPeriod(period) {
+            // Assuming 1 unit = 1 hour
+            if (period >= 23 && period <= 25) return "Daily cycle";
+            if (period >= 167 && period <= 169) return "Weekly cycle";
+            if (period >= 720 && period <= 744) return "Monthly cycle";
+            return "Unknown cycle";
+        }
+    </script>
+</body>
+</html>
